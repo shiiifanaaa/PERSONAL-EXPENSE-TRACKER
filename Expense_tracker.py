@@ -1,30 +1,54 @@
 
 # Personal Expense Tracker
 
-print("PERSONAL EXPENSE TRACKER")
 
-# Taking first expense
-expense1 = input("Enter first expense name: ")
-amount1 = float(input("Enter amount: "))
+expense_names = []
+expense_amounts = []
 
-# Taking second expense
-expense2 = input("Enter second expense name: ")
-amount2 = float(input("Enter amount: "))
+while True:
 
-# Taking third expense
-expense3 = input("Enter third expense name: ")
-amount3 = float(input("Enter amount: "))
+    name = input("\nEnter expense name: ")
+    amount = float(input("Enter expense amount: "))
 
+    if amount <= 0:
+        print("Invalid amount! Enter a positive amount.")
+        continue
 
+    expense_names.append(name)
+    expense_amounts.append(amount)
 
-print("\nYOUR EXPENSES")
+    choice = input("Do you want to add another expense? (yes/no): ")
 
-print(expense1, "-", amount1)
-print(expense2, "-", amount2)
-print(expense3, "-", amount3)
+    if choice.lower() == "no":
+        break
 
+# Calculate total
+total = 0
 
-total = amount1 + amount2 + amount3
+for amount in expense_amounts:
+    total = total + amount
 
-print("\nTOTAL EXPENSES:", total)
+# Display expense report
+print("\n===== EXPENSE REPORT =====")
+
+if len(expense_names) == 0:
+    print("You have not added any expenses")
+
+else:
+    for i in range(len(expense_names)):
+        print(expense_names[i], ":", expense_amounts[i])
+
+    print("--------------------------")
+    print("Total Expenses:", len(expense_names))
+    print("Total Amount: Rs.", total)
+
+    # Highest expense
+    highest = max(expense_amounts)
+    print("Highest Expense: Rs.", highest)
+
+    # Lowest expense
+    lowest = min(expense_amounts)
+    print("Lowest Expense: Rs.", lowest)
+
+print("==========================")
 
